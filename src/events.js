@@ -1,4 +1,5 @@
 import { WebClient } from '@slack/client'
+import Octokit from '@octokit/rest'
 
 exports.handler = async(event, context, callback) => {
     
@@ -19,6 +20,21 @@ exports.handler = async(event, context, callback) => {
             inclusive: true
         })
         const message = res.message[0]
+
+        // P.58追加
+        const octokit = Octokit()
+        octokit.authenticate({
+            type: 'oauth',
+            token: process.env.GITHUB_TOKEN
+        })
+
+        octokit.repos.createFile({
+            owner: 'creaaa',
+            repo: 'MyFirstNetlifyFunctions',
+            path: `data/${slackEvent.item.ts}.txt`,
+            message: 'Added by netlify-slack-app',
+            content: (new Buffer(message.text)).toString('base64')
+        })
 
         console.log(JSON.stringify(message, null, 4))        
     }
