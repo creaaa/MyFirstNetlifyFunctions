@@ -2,7 +2,7 @@ import { WebClient } from '@slack/client'
 import Octokit from '@octokit/rest'
 
 exports.handler = async(event, context, callback) => {
-    console.log("きたわ")
+    console.log("きたわ2")
     const body = JSON.parse(event.body)
     const slackEvent = body.event
     console.log(JSON.stringify(body, null, 4))
