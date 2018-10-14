@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "netlify-lambda": "^1.0.2"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "netlify-lambda build src/ && node build.js"
+    "build": "netlify-lambda build src/ && node build.js",
+    "serve": "netlify-lambda serve src/"
   },
   "repository": {
     "type": "git",
